@@ -18,10 +18,10 @@ const PostDetail = () => {
     api.get('/v1/post/posts')
       .then(res => {
         console.log('Respuesta posts:', res.data)
-        const postsArray = Array.isArray(res.data.data) ? res.data.data : []
+        const postsArray = Array.isArray(res.data) ? res.data : []
         console.log('Array posts:', postsArray)
         console.log('postId param:', postId)
-        const found = postsArray.find(p => String(p._id) === String(postId))
+        const found = postsArray.find(p => String(p._id) === postId)
         console.log('Post encontrado:', found)
 
         if (!found) {
@@ -40,7 +40,7 @@ const PostDetail = () => {
     getPostComments(postId)
       .then(commentsData => {
         console.log('Comentarios:', commentsData)
-        setComments(Array.isArray(commentsData) ? commentsData : [])
+        setComments(Array.isArray(commentsData.data) ? commentsData.data : [])
       })
       .catch(err => {
         console.error('Error fetching comments:', err)
