@@ -45,26 +45,23 @@ export const deletePost = async (req, res) => {
 }
 
 // Obtener todos los posts ordenados por fechas
+// Obtener todos los posts ordenados por fechas
 export const getAllPost = async (req, res) => {
-    try {
-        const orderQuery = req.query.order
-        const order = orderQuery === 'asc' ? 1 : -1  // ascendente = 1, descendente = -1
+  try {
+    const orderQuery = req.query.order
+    const order = orderQuery === 'asc' ? 1 : -1
 
-        const posts = await Post.find().sort({ createdAt: order })
+    const posts = await Post.find().sort({ createdAt: order })
 
-        if (posts.length === 0) {
-            return res.status(404).send({ success: false, message: 'No posts found' })
-        }
-
-        return res.send({
-            success: true,
-            message: `Posts listed in ${orderQuery === 'asc' ? 'oldest first' : 'newest first'} order`,
-            data: posts
-        })
-    } catch (error) {
-        console.error(error)
-        return res.status(500).send({ success: false, message: 'General error getting posts', error })
+    if (posts.length === 0) {
+      return res.status(404).json([])
     }
+
+    return res.json(posts)  // 🔥 Aquí devolvemos solo el array
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json([])
+  }
 }
 
 // Actualizar Post
