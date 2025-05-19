@@ -44,7 +44,7 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3626/v1/post/Posts",
+							"raw": "localhost:3626/v1/post/posts",
 							"host": [
 								"localhost"
 							],
@@ -52,7 +52,64 @@
 							"path": [
 								"v1",
 								"post",
-								"Posts"
+								"posts"
+							],
+							"query": [
+								{
+									"key": "curso",
+									"value": "TALLER",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OnePost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:3626/v1/post/Posts/682749a48f51179f4347e7bc",
+							"host": [
+								"localhost"
+							],
+							"port": "3626",
+							"path": [
+								"v1",
+								"post",
+								"Posts",
+								"682749a48f51179f4347e7bc"
 							]
 						}
 					},
@@ -204,17 +261,17 @@
 							"urlencoded": [
 								{
 									"key": "title",
-									"value": "Actividad #1",
+									"value": "Actividad #3",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "Prueba corta #1 node js",
+									"value": "lab. #1",
 									"type": "text"
 								},
 								{
 									"key": "curso",
-									"value": "TECNOLOGIA",
+									"value": "PRACTICA-SUPERVISADA",
 									"type": "text"
 								}
 							]
