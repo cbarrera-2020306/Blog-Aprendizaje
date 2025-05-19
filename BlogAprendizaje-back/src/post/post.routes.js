@@ -3,7 +3,7 @@ import { addPost, updatePost, deletePost, getAllPost } from '../post/post.contro
 const api = Router();
 
 //Rutas
-api.get('/Posts', getAllPost)
+api.get('/posts', getAllPost)
 api.post('/addPost',  addPost);
 api.put('/updatePost/:id',  updatePost);
 api.delete('/deletePost/:id', deletePost);
