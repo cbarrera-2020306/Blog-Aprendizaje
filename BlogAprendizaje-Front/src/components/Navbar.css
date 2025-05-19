@@ -1,0 +1,20 @@
+/* Navbar.css */
+
+#navbar1 {
+  background-color: #11003a;
+  width: 100%;         /* Ocupa todo el ancho de la pantalla */
+  height: 80px;         /* Aumenta la altura */
+  padding: 0 2rem;      /* Espaciado interno a los lados */
+  display: flex;
+  align-items: center;  /* Centra verticalmente los enlaces */
+}
+
+.navbar-nav .nav-link {
+  color: #00e0c6 !important;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #00bdbd !important;
+}

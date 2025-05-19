@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getPostComments, addComment } from '../../services/postService'
 import api from '../../services/api'
+import './PostDetail.css'
 
 const PostDetail = () => {
   const { postId } = useParams()
@@ -17,13 +18,8 @@ const PostDetail = () => {
 
     api.get('/v1/post/posts')
       .then(res => {
-        console.log('Respuesta posts:', res.data)
         const postsArray = Array.isArray(res.data) ? res.data : []
-        console.log('Array posts:', postsArray)
-        console.log('postId param:', postId)
         const found = postsArray.find(p => String(p._id) === postId)
-        console.log('Post encontrado:', found)
-
         if (!found) {
           setError('No se encontró el post.')
           setPost(null)
@@ -39,7 +35,6 @@ const PostDetail = () => {
 
     getPostComments(postId)
       .then(commentsData => {
-        console.log('Comentarios:', commentsData)
         setComments(Array.isArray(commentsData.data) ? commentsData.data : [])
       })
       .catch(err => {
@@ -50,52 +45,84 @@ const PostDetail = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     try {
-      await addComment({ ...newComment, post: postId })
+      const commentToAdd = { ...newComment, post: postId }
+      await addComment(commentToAdd)
+
       const updatedComments = await getPostComments(postId)
-      setComments(updatedComments)
+      setComments(Array.isArray(updatedComments.data) ? updatedComments.data : [])
+
       setNewComment({ author: '', content: '' })
     } catch (err) {
       alert('Error al agregar comentario')
     }
   }
 
-  if (loading) return <p>Cargando post...</p>
-  if (error) return <p style={{ color: 'red' }}>{error}</p>
-  if (!post) return <p>No se encontró el post.</p>
+  if (loading) return <p className="loading">Cargando post...</p>
+  if (error) return <p className="error">{error}</p>
+  if (!post) return <p className="error">No se encontró el post.</p>
 
   return (
-    <div>
-      <h2>{post.title}</h2>
-      <p><strong>Curso:</strong> {post.curso}</p>
-      <p>{post.description}</p>
+    <div className="post-detail-container">
+      <div className="left-section">
+        <div className="post-box">
+          <div className="post-header">
+            <h2 className="post-title">{post.title}</h2>
+            <span className="post-date">
+              {new Date(post.createdAt).toLocaleString('es-ES', {
+                dateStyle: 'short',
+                timeStyle: 'short'
+              })}
+            </span>
+          </div>
+          <p className="post-curso"><strong>Curso:</strong> {post.curso}</p>
+          <p className="post-description">{post.description}</p>
+        </div>
 
-      <h3>Agregar Comentario</h3>
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Autor"
-          value={newComment.author}
-          onChange={e => setNewComment({ ...newComment, author: e.target.value })}
-          required
-        />
-        <textarea
-          placeholder="Comentario"
-          value={newComment.content}
-          onChange={e => setNewComment({ ...newComment, content: e.target.value })}
-          required
-        />
-        <button type="submit">Comentar</button>
-      </form>
+        <div className="form-box">
+          <h3>Agregar Comentario</h3>
+          <form onSubmit={handleSubmit}>
+            <input
+              placeholder="Autor"
+              value={newComment.author}
+              onChange={e => setNewComment({ ...newComment, author: e.target.value })}
+              required
+            />
+            <textarea
+              placeholder="Comentario"
+              value={newComment.content}
+              onChange={e => setNewComment({ ...newComment, content: e.target.value })}
+              required
+            />
+            <button type="submit">Comentar</button>
+          </form>
+        </div>
+      </div>
 
-      <h3>Comentarios</h3>
-      {comments.length === 0 ? (
-        <p>No hay comentarios aún.</p>
-      ) : (
-        <ul>
-          {comments.map(c => (
-            <li key={c._id}><strong>{c.author}:</strong> {c.content}</li>
-          ))}
-        </ul>
-      )}
+      <div className="right-section">
+        <div className="comments-box">
+          <h3>Comentarios</h3>
+          {comments.length === 0 ? (
+            <p>No hay comentarios aún.</p>
+          ) : (
+            <ul className="comment-list">
+              {comments.map(c => (
+                <li key={c._id} className="comment-item">
+                  <div className="comment-header">
+                    <span className="comment-author">{c.author}</span>
+                    <span className="comment-date">
+                      {new Date(c.createdAt).toLocaleString('es-ES', {
+                        dateStyle: 'short',
+                        timeStyle: 'short'
+                      })}
+                    </span>
+                  </div>
+                  <div className="comment-content">{c.content}</div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
     </div>
   )
 }

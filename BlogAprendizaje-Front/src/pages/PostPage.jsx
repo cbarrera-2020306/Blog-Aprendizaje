@@ -14,7 +14,7 @@ const PostPage = () => {
   }, [curso])
 
   return (
-    <div>
+    <div className="container mt-4" style={{ backgroundColor: '#00ffb9', minHeight: '100vh', padding: '2rem' }}>
       <h1>Posts de {curso}</h1>
       <PostList posts={posts} />
     </div>

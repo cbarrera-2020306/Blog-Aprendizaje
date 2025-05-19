@@ -4,11 +4,14 @@ const PostList = ({ posts }) => {
   console.log("POSTS RECIBIDOS:", posts)
 
   return (
-    <div className="post-list">
-      {posts.map(post => (
-        <PostCard key={post._id} post={post} />
-      ))}
+    <div className="container mt-4">
+      <div className="row">
+        {posts.map(post => (
+          <PostCard key={post._id} post={post} />
+        ))}
+      </div>
     </div>
+
   )
 }
 

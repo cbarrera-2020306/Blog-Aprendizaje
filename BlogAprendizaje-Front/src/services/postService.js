@@ -20,5 +20,5 @@ export const getPostComments = async (postId) => {
 }
 
 export const addComment = async (comment) => {
-  await api.post('/addCommentary', comment)
+  await api.post('/v1/Commentary/addCommentary', comment)
 }

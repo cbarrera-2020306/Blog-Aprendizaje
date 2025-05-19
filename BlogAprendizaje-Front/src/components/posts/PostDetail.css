@@ -1,0 +1,155 @@
+/* PostDetail.css */
+
+.post-detail-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  background-color: white;
+}
+
+.left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.right-section {
+  flex: 1;
+}
+
+.post-box {
+  background-color: #00bdbd;
+  padding: 20px;
+  border-radius: 8px;
+  color: #000;
+}
+
+.form-box {
+  background-color: #00bdbd;
+  padding: 20px;
+  border-radius: 8px;
+  color: #000;
+}
+
+.form-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-box input,
+.form-box textarea {
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #00e0c6;
+}
+
+.form-box button {
+  padding: 10px;
+  background-color: #11003a;
+  color: #00e0c6;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.comments-box {
+  background-color: #00aaff;
+  padding: 20px;
+  border-radius: 8px;
+  color: #000;
+  height: 100%;
+}
+
+.comments-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.comments-box li {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #0088cc;
+  padding-bottom: 6px;
+}
+
+.loading,
+.error {
+  font-weight: bold;
+  text-align: center;
+  padding: 20px;
+}
+.error {
+  color: red;
+}
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comment-item {
+  border-bottom: 1px solid #0088cc;
+  padding: 10px 0;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.comment-author {
+  color: #11003a;
+}
+
+.comment-date {
+  color: #444;
+  font-size: 0.9em;
+}
+
+.comment-content {
+  padding-left: 10px;
+}
+
+.post-box {
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 20px;
+  background-color: #00bdbd;
+  border-radius: 8px;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.post-title {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1a1a1a;
+}
+
+.post-date {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.post-curso {
+  font-weight: bold;
+  color: #004080;
+  margin-bottom: 8px;
+}
+
+.post-description {
+  color: #333;
+  line-height: 2;
+}

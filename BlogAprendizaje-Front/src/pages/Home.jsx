@@ -21,7 +21,7 @@ const Home = () => {
   }, [])
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-4" style={{ backgroundColor: '#00ffb9', minHeight: '100vh', padding: '2rem' }}>
       <h2>Todos los Posts</h2>
       {error ? (
         <p style={{ color: 'red' }}>{error}</p>
